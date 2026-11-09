@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Object Recognition</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+
+    <!-- Teachable Machine -->
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+    <!-- External JavaScript -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="recognition-card">
+
+        <header class="topbar">
+            <h1>Smart Object Recognition</h1>
+            <span class="reference-badge">UI Reference</span>
+        </header>
+
+        <section class="upload-area">
+
+            <h2>Upload Test Image</h2>
+            <p>Choose an image of a trained object</p>
+
+            <label class="choose-button" for="imageInput">
+                Choose Image
+            </label>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                hidden
+            >
+
+            <p id="fileName"></p>
+
+            <div class="preview-wrap" id="previewWrap" hidden>
+                <img id="imagePreview" alt="Uploaded image">
+            </div>
+
+        </section>
+
+        <section class="model-row">
+            <span>Current model</span>
+            <span class="model-badge" id="modelStatus">
+                Loading model...
+            </span>
+        </section>
+
+        <section class="prediction">
+
+            <p class="eyebrow">Top prediction</p>
+
+            <h2 id="topPrediction">Waiting for image</h2>
+
+            <p class="confidence" id="topConfidence">
+                --%
+            </p>
+
+        </section>
+
+        <section class="scores">
+
+            <h3>Class confidence scores</h3>
+
+            <div id="scoreList">
+                <p>Upload an image to see prediction results.</p>
+            </div>
+
+        </section>
+
+        <footer id="appMessage">
+            Loading recognition model...
+        </footer>
+
+    </main>
+
+</body>
+</html>

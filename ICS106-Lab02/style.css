@@ -1,0 +1,473 @@
+
+/* =================================
+   GLOBAL STYLES
+================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: #202938;
+    background: #f4f7fb;
+
+    --primary: #3978ed;
+    --primary-light: #eaf1ff;
+    --text-main: #202938;
+    --text-muted: #8792a2;
+    --border: #e8edf3;
+    --background: #f4f7fb;
+}
+
+body {
+    min-height: 100vh;
+    padding: 35px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: var(--background);
+}
+
+/* =================================
+   MAIN CONTAINER
+================================= */
+
+.recognition-card {
+    width: min(100%, 850px);
+    min-height: 600px;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(35, 55, 85, 0.06);
+}
+
+/* =================================
+   HEADER
+================================= */
+
+.topbar,
+.brand,
+.model-row,
+.score-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topbar {
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+h1 {
+    color: var(--text-main);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.reference-badge {
+    padding: 6px 11px;
+    color: #64748b;
+    background: #f1f4f8;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =================================
+   IMAGE UPLOAD SECTION
+================================= */
+
+.upload-area {
+    min-height: 220px;
+    margin: 25px 0;
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background: #f8faff;
+    border: 1.5px dashed #cbd8ed;
+    border-radius: 15px;
+
+    transition: background 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.upload-area:hover {
+    background: #f1f6ff;
+    border-color: var(--primary);
+}
+
+.upload-icon {
+    width: 43px;
+    height: 43px;
+    margin-bottom: 15px;
+    padding: 8px;
+    background: var(--primary-light);
+    border-radius: 12px;
+}
+
+.upload-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.upload-area h2 {
+    margin-bottom: 7px;
+    color: var(--text-main);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.upload-area p {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* Upload Button */
+
+.choose-button {
+    min-width: 135px;
+    min-height: 40px;
+    padding: 0 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    background: var(--primary);
+    border: none;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(57, 120, 237, 0.18);
+
+    transition: transform 0.2s ease,
+                background 0.2s ease;
+}
+
+.choose-button:hover {
+    background: #2866d8;
+    transform: translateY(-2px);
+}
+
+.choose-button:focus {
+    outline: 3px solid #b7d0ff;
+    outline-offset: 3px;
+}
+
+/* File Name */
+
+.file-name {
+    max-width: 90%;
+    margin-top: 12px !important;
+    overflow-wrap: anywhere;
+    font-size: 12px !important;
+}
+
+/* Image Preview */
+
+.preview-wrap {
+    max-width: 220px;
+    max-height: 150px;
+    margin-top: 15px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.preview-wrap img {
+    display: block;
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+/* =================================
+   MODEL STATUS
+================================= */
+
+.model-row {
+    margin-bottom: 28px;
+    padding: 13px 15px;
+    background: #f8faff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.model-badge {
+    padding: 6px 11px;
+    color: #3978ed;
+    background: #eaf1ff;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.model-badge.model-ready {
+    color: #168447;
+    background: #e4f7ec;
+}
+
+/* =================================
+   TOP PREDICTION
+================================= */
+
+.prediction {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(
+        135deg,
+        #f1f6ff,
+        #f8faff
+    );
+
+    border: 1px solid #e4ecfc;
+    border-radius: 14px;
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.prediction h2 {
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.7px;
+    overflow-wrap: anywhere;
+}
+
+.confidence {
+    color: var(--text-main);
+    font-size: 30px;
+    font-weight: 800;
+}
+
+/* =================================
+   CONFIDENCE SCORES
+================================= */
+
+.scores {
+    padding: 0 2px;
+}
+
+.scores h3 {
+    margin-bottom: 22px;
+    color: var(--text-main);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.score-item {
+    margin-bottom: 20px;
+}
+
+.score-label {
+    margin-bottom: 10px;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.progress-track {
+    width: 100%;
+    height: 9px;
+    overflow: hidden;
+    background: #edf1f6;
+    border-radius: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #3978ed,
+        #69a0ff
+    );
+
+    border-radius: 20px;
+
+    transition: width 0.5s ease;
+}
+
+.empty-scores {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+    margin-top: 30px;
+    padding-top: 17px;
+    border-top: 1px solid var(--border);
+
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* =================================
+   TABLET RESPONSIVENESS
+================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px 14px;
+    }
+
+    .recognition-card {
+        padding: 22px;
+    }
+
+}
+
+/* =================================
+   PHONE RESPONSIVENESS
+================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 0;
+    }
+
+    .recognition-card {
+        width: 100%;
+        min-height: 100vh;
+        padding: 18px 15px;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .topbar {
+        padding-bottom: 17px;
+    }
+
+    h1 {
+        font-size: 15px;
+    }
+
+    .brand {
+        gap: 8px;
+    }
+
+    .brand-icon {
+        width: 19px;
+        height: 19px;
+    }
+
+    .reference-badge {
+        padding: 5px 8px;
+        font-size: 9px;
+    }
+
+    .upload-area {
+        min-height: 200px;
+        margin: 20px 0;
+        padding: 25px 10px;
+    }
+
+    .model-row {
+        margin-bottom: 22px;
+        padding: 12px;
+    }
+
+    .prediction {
+        padding: 17px;
+        margin-bottom: 25px;
+    }
+
+    .prediction h2 {
+        font-size: 23px;
+    }
+
+    .confidence {
+        font-size: 26px;
+    }
+
+    .scores h3 {
+        font-size: 14px;
+    }
+
+    .score-label {
+        font-size: 12px;
+    }
+
+    footer {
+        margin-top: 25px;
+    }
+
+}
+
+/* =================================
+   SMALL PHONES
+================================= */
+
+@media (max-width: 360px) {
+
+    .recognition-card {
+        padding: 15px 12px;
+    }
+
+    h1 {
+        font-size: 13px;
+    }
+
+    .reference-badge {
+        font-size: 8px;
+    }
+
+    .prediction h2 {
+        font-size: 20px;
+    }
+
+}

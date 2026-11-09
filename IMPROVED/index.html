@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Object Recognition</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main class="recognition-card">
+
+        <header class="topbar">
+            <h1>Smart Object Recognition</h1>
+            <span class="reference-badge">UI Reference</span>
+        </header>
+
+        
+<!-- INPUT SOURCE SECTION -->
+<section class="input-section">
+
+    <h2>Recognition Input</h2>
+    <p class="input-description">Choose how you want to recognize objects.</p>
+
+    <!-- Input Selection -->
+    <div class="input-selector">
+
+        <button
+            type="button"
+            class="input-option selected"
+            id="uploadOption"
+        >
+            <span>Upload Image</span>
+        </button>
+
+        <button
+            type="button"
+            class="input-option"
+            id="webcamOption"
+        >
+            <span>Webcam</span>
+        </button>
+
+    </div>
+
+    <!-- IMAGE UPLOAD -->
+    <div class="input-content" id="uploadContent">
+
+        <label class="choose-button" for="imageInput">
+            Choose Image
+        </label>
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            hidden
+        >
+
+        <p id="fileName"></p>
+
+        <div class="preview-wrap" id="previewWrap" hidden>
+            <img id="imagePreview" alt="Uploaded image">
+        </div>
+
+    </div>
+
+    <!-- WEBCAM -->
+    <div class="input-content" id="webcamContent" hidden>
+
+        <div class="webcam-preview" id="webcamPreview" hidden>
+            <video
+                id="webcamVideo"
+                autoplay
+                playsinline
+                muted
+            ></video>
+        </div>
+
+        <div class="webcam-controls">
+
+            <button
+                type="button"
+                class="camera-button start-camera"
+                id="startCamera"
+            >
+                Start Webcam
+            </button>
+
+            <button
+                type="button"
+                class="camera-button stop-camera"
+                id="stopCamera"
+                disabled
+            >
+                Stop Webcam
+            </button>
+
+        </div>
+
+        <span class="webcam-indicator" id="cameraStatus">
+            Camera Off
+        </span>
+
+    </div>
+
+</section>
+
+
+        <!-- RECOGNITION MODEL SELECTOR -->
+        <section class="version-section">
+
+            <div class="version-heading">
+                <div>
+                    <h3>Recognition Model</h3>
+                    <p>Select which trained model to use.</p>
+                </div>
+
+                <span class="active-indicator">Active</span>
+            </div>
+
+            <div class="version-selector">
+
+                <button
+                    class="version-button"
+                    id="version1Button"
+                    type="button"
+                >
+                    <span class="version-name">Version 1</span>
+                    <span class="version-description">Original model</span>
+                </button>
+
+                <button
+                    class="version-button selected"
+                    id="version2Button"
+                    type="button"
+                >
+                    <span class="version-name">
+                        Version 2
+                        <span class="improved-badge">Improved</span>
+                    </span>
+                    <span class="version-description">Retrained model</span>
+                </button>
+
+            </div>
+
+            <p class="selected-version" id="selectedVersion">
+                Currently selected: Version 2 — Improved model
+            </p>
+
+        </section>
+
+        <section class="model-row">
+            <span>Current model</span>
+            <span class="model-badge" id="modelStatus">
+                Loading model...
+            </span>
+        </section>
+
+        <section class="prediction">
+
+            <p class="eyebrow">Top prediction</p>
+
+            <h2 id="topPrediction">Waiting for image</h2>
+
+            <p class="confidence" id="topConfidence">--%</p>
+
+        </section>
+
+        <section class="scores">
+
+            <h3>Class confidence scores</h3>
+
+            <div id="scoreList">
+                <p>Upload an image to see prediction results.</p>
+            </div>
+
+        </section>
+
+        <footer id="appMessage">
+            Loading recognition model...
+        </footer>
+
+    </main>
+</body>
+</html>
